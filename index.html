@@ -2,18 +2,21 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subway Surfers EZZKKYK</title>
     <style>
         :root { --bg: #0f0f0f; --card: #1a1a1a; --text: #ffffff; --btn: #222; }
+        .light-mode { --bg: #f0f0f0; --card: #ffffff; --text: #000000; --btn: #ddd; }
         body { background-color: var(--bg); color: var(--text); font-family: sans-serif; margin: 0; padding: 20px; transition: 0.3s; }
-        .header { text-align: center; margin-bottom: 20px; }
-        .config-bar { background: #222; padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center; }
+        .header { text-align: center; position: relative; }
+        .gear-icon { cursor: pointer; font-size: 24px; position: absolute; right: 0; top: 0; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; }
+        .modal-content { background: var(--card); width: 80%; max-width: 400px; margin: 20% auto; padding: 20px; border-radius: 15px; }
         .map-card { background: var(--card); border-radius: 15px; padding: 20px; margin-bottom: 20px; border: 1px solid #333; }
-        .res-container { display: none; margin-top: 10px; } 
+        .res-container { display: none; margin-top: 10px; }
         .res-input { width: 48%; padding: 10px; border-radius: 8px; border: 1px solid #444; background: #333; color: white; }
-        .btn-play { display: block; width: 100%; padding: 15px; background: #333; color: white; text-align: center; border-radius: 10px; font-weight: bold; margin-top: 10px; cursor: pointer; border: none; }
-        #fps-counter { position: fixed; top: 10px; right: 10px; background: rgba(0,0,0,0.5); padding: 5px 10px; border-radius: 5px; color: #0f0; display: none; }
+        .btn-play { display: block; width: 100%; padding: 15px; background: var(--btn); color: var(--text); text-align: center; border-radius: 10px; font-weight: bold; margin-top: 10px; cursor: pointer; border: none; }
+        /* FPS Flutuante */
+        #fps-counter { position: fixed; top: 10px; left: 10px; background: rgba(0,0,0,0.7); padding: 5px 10px; border-radius: 5px; color: #0f0; display: none; z-index: 9999; font-family: monospace; pointer-events: none; }
     </style>
 </head>
 <body>
@@ -22,64 +25,45 @@
 
     <div class="header">
         <h1>BY EZZKY</h1>
-        <div class="config-bar">
-            <button onclick="toggleFPS()">FPS: <span id="fps-status">OFF</span></button>
-            <button onclick="toggleRes()">Resolução: <span id="res-status">OFF</span></button>
+        <span class="gear-icon" onclick="toggleModal()">⚙️</span>
+    </div>
+
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <h2>Configurações</h2>
+            <label><input type="checkbox" id="fpsCheck" onclick="toggleFPS()"> Mostrar FPS no jogo</label><br><br>
+            <label><input type="checkbox" onclick="toggleRes()"> Mostrar Resolução nos Mapas</label><br><br>
+            <label><input type="checkbox" onclick="toggleTheme()"> Modo Claro</label><br><br>
+            <button onclick="toggleModal()">Fechar</button>
         </div>
     </div>
 
     <script>
-        function toggleFPS() {
-            let el = document.getElementById('fps-counter');
-            let st = document.getElementById('fps-status');
-            el.style.display = (el.style.display === 'block') ? 'none' : 'block';
-            st.innerText = (el.style.display === 'block') ? 'ON' : 'OFF';
+        function toggleModal() { let m = document.getElementById('settingsModal'); m.style.display = (m.style.display === 'block') ? 'none' : 'block'; }
+        function toggleFPS() { 
+            let el = document.getElementById('fps-counter'); 
+            el.style.display = document.getElementById('fpsCheck').checked ? 'block' : 'none'; 
         }
-
-        function toggleRes() {
+        function toggleTheme() { document.body.classList.toggle('light-mode'); }
+        function toggleRes() { 
             let divs = document.querySelectorAll('.res-container');
-            let st = document.getElementById('res-status');
             let isVisible = divs[0].style.display === 'block';
             divs.forEach(d => d.style.display = isVisible ? 'none' : 'block');
-            st.innerText = isVisible ? 'OFF' : 'ON';
         }
-
+        
+        // Função que abre o jogo E passa a configuração de FPS para a nova janela
         function abrir(url, wId, hId) {
             let w = document.getElementById(wId).value || 1280;
             let h = document.getElementById(hId).value || 720;
-            window.open(url, '_blank', 'width='+w+',height='+h);
+            let showFps = document.getElementById('fpsCheck').checked;
+            
+            // Abre o jogo e injeta o contador de FPS lá dentro via URL
+            let win = window.open(url + '?fps=' + showFps, '_blank', 'width='+w+',height='+h);
         }
     </script>
 
-    <div class="map-card">
-        <div class="map-title">Zurich</div>
-        <div class="res-container"><input type="number" class="res-input" id="w1" placeholder="Largura"><input type="number" class="res-input" id="h1" placeholder="Altura"></div>
-        <button class="btn-play" onclick="abrir('Games/Zurich/', 'w1', 'h1')">JOGAR</button>
-    </div>
-
-    <div class="map-card">
-        <div class="map-title">Berlin</div>
-        <div class="res-container"><input type="number" class="res-input" id="w2" placeholder="Largura"><input type="number" class="res-input" id="h2" placeholder="Altura"></div>
-        <button class="btn-play" onclick="abrir('Games/Berlin/', 'w2', 'h2')">JOGAR</button>
-    </div>
-
-    <div class="map-card">
-        <div class="map-title">Houston</div>
-        <div class="res-container"><input type="number" class="res-input" id="w3" placeholder="Largura"><input type="number" class="res-input" id="h3" placeholder="Altura"></div>
-        <button class="btn-play" onclick="abrir('Games/Houston/', 'w3', 'h3')">JOGAR</button>
-    </div>
-
-    <div class="map-card">
-        <div class="map-title">Monaco</div>
-        <div class="res-container"><input type="number" class="res-input" id="w4" placeholder="Largura"><input type="number" class="res-input" id="h4" placeholder="Altura"></div>
-        <button class="btn-play" onclick="abrir('Games/Monaco/', 'w4', 'h4')">JOGAR</button>
-    </div>
-
-    <div class="map-card">
-        <div class="map-title">San Francisco</div>
-        <div class="res-container"><input type="number" class="res-input" id="w5" placeholder="Largura"><input type="number" class="res-input" id="h5" placeholder="Altura"></div>
-        <button class="btn-play" onclick="abrir('Games/San Francisco/', 'w5', 'h5')">JOGAR</button>
-    </div>
-
-</body>
-</html>
+    <div class="map-card"><div class="map-title">Zurich</div><div class="res-container"><input type="number" class="res-input" id="w1" placeholder="Largura"><input type="number" class="res-input" id="h1" placeholder="Altura"></div><button class="btn-play" onclick="abrir('Games/Zurich/', 'w1', 'h1')">JOGAR</button></div>
+    <div class="map-card"><div class="map-title">Berlin</div><div class="res-container"><input type="number" class="res-input" id="w2" placeholder="Largura"><input type="number" class="res-input" id="h2" placeholder="Altura"></div><button class="btn-play" onclick="abrir('Games/Berlin/', 'w2', 'h2')">JOGAR</button></div>
+    <div class="map-card"><div class="map-title">Houston</div><div class="res-container"><input type="number" class="res-input" id="w3" placeholder="Largura"><input type="number" class="res-input" id="h3" placeholder="Altura"></div><button class="btn-play" onclick="abrir('Games/Houston/', 'w3', 'h3')">JOGAR</button></div>
+    <div class="map-card"><div class="map-title">Monaco</div><div class="res-container"><input type="number" class="res-input" id="w4" placeholder="Largura"><input type="number" class="res-input" id="h4" placeholder="Altura"></div><button class="btn-play" onclick="abrir('Games/Monaco/', 'w4', 'h4')">JOGAR</button></div>
+    <div class="map-card"><div class="map-title">San Francisco</div><div class="res-container"><input
