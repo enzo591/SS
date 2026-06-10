@@ -2,53 +2,59 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Subway Surfers</title>
+    <title>Subway Surfers EZZKY</title>
     <style>
         body { background: #0a0a0a; color: #fff; font-family: sans-serif; margin: 0; padding: 20px; }
         
-        /* Grid dos mapas */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; margin-bottom: 80px; }
         
-        /* O card igual ao da foto */
-        .map-card { background: #161616; border-radius: 15px; padding: 15px; border: 1px solid #222; }
-        .map-card img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; }
+        .map-card { background: #161616; border-radius: 12px; padding: 15px; border: 1px solid #222; display: flex; flex-direction: column; }
+        .map-card img { width: 40px; height: 40px; border-radius: 8px; margin-bottom: 8px; }
+        .map-card h3 { margin: 0; font-size: 0.95rem; }
+        .map-card p { color: #777; font-size: 0.75rem; margin: 4px 0 12px 0; }
         
-        .map-info { padding-top: 10px; }
-        .map-info h3 { margin: 5px 0; font-size: 1.2rem; }
-        .map-info p { color: #888; font-size: 0.85rem; margin-bottom: 15px; }
-        
-        /* Botão igual ao da foto */
-        .btn-play { background: #fff; color: #000; width: 100%; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
-        
-        /* Barra inferior fixa */
-        .nav-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #111; padding: 10px 30px; border-radius: 50px; border: 1px solid #333; display: flex; gap: 40px; }
+        .btn-play { background: #222; color: #eee; width: 100%; padding: 8px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 0.85rem; }
+        .btn-play:hover { background: #333; }
+
+        .bottom-nav { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #1a1a1a; padding: 8px 20px; border-radius: 50px; border: 1px solid #333; display: flex; gap: 20px; font-size: 0.8rem; z-index: 100; color: #aaa; }
+        .bottom-nav span { cursor: pointer; }
     </style>
 </head>
 <body>
 
     <div class="grid">
         <div class="map-card">
-            <img src="zurich.jpg" alt="Zurich">
-            <div class="map-info">
-                <h3>Zurich</h3>
-                <p>Alpes urbanos. Versão normal do mapa.</p>
-                <button class="btn-play">Jogar</button>
-            </div>
+            <img src="zurich.jpg" alt="Icon">
+            <h3>ZURICH</h3>
+            <p>Alpes urbanos. Versão normal do mapa.</p>
+            <button class="btn-play" onclick="window.location.href='Games/Zurich/'">JOGAR</button>
         </div>
 
         <div class="map-card">
-            <img src="houston.jpg" alt="Houston">
-            <div class="map-info">
-                <h3>Houston</h3>
-                <p>Space themes & Urban park.</p>
-                <button class="btn-play">Jogar</button>
-            </div>
+            <img src="houston.jpg" alt="Icon">
+            <h3>HOUSTON</h3>
+            <p>Space themes & Urban park.</p>
+            <button class="btn-play" onclick="window.location.href='Games/Houston/'">JOGAR</button>
+        </div>
+
+        <div class="map-card">
+            <img src="monaco.jpg" alt="Icon">
+            <h3>MONACO</h3>
+            <p>Luxurious race circuit & Marina.</p>
+            <button class="btn-play" onclick="window.location.href='Games/Monaco/'">JOGAR</button>
+        </div>
+
+        <div class="map-card">
+            <img src="sf.jpg" alt="Icon">
+            <h3>SAN FRANCISCO</h3>
+            <p>Golden Gate Bridge & Sunny park.</p>
+            <button class="btn-play" onclick="window.location.href='Games/SanFrancisco/'">JOGAR</button>
         </div>
     </div>
 
-    <div class="nav-bar">
+    <div class="bottom-nav">
         <span>Mapas</span>
-        <span onclick="alert('Abrir Configs')">Configs</span>
+        <span onclick="window.location.href='config.html'">Configs</span>
     </div>
 
 </body>
