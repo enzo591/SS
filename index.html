@@ -2,51 +2,58 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subway Surfers EZZKY</title>
     <style>
-        :root { --bg: #050505; --card: #121212; --text: #ffffff; --accent: #ff4d00; }
-        .light-mode { --bg: #f4f4f4; --card: #ffffff; --text: #000; --accent: #ff4d00; }
+        :root { --bg: #0a0a0a; --card: #161616; --text: #ffffff; --accent: #e50914; }
         
-        body { background-color: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; margin: 0; padding: 40px; transition: 0.4s; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; padding: 60px 40px; }
         
-        .header { text-align: center; margin-bottom: 60px; padding-top: 20px; }
-        .header h1 { font-size: 3.5rem; letter-spacing: -2px; margin: 0; }
-        .gear-icon { cursor: pointer; font-size: 40px; margin-left: 20px; vertical-align: middle; background: #222; padding: 10px; border-radius: 50%; }
+        /* Cabeçalho e Engrenagem */
+        .header { display: flex; justify-content: center; align-items: center; margin-bottom: 80px; gap: 20px; }
+        .header h1 { font-size: 4rem; font-weight: 900; letter-spacing: -2px; margin: 0; }
+        .gear-btn { font-size: 3rem; cursor: pointer; background: #222; padding: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+        .gear-btn:hover { background: #333; transform: rotate(90deg); }
 
-        /* Modal Estilo Premium */
+        /* Modal */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; }
-        .modal-content { background: var(--card); width: 85%; max-width: 600px; margin: 20% auto; padding: 50px; border-radius: 30px; font-size: 1.5rem; border: 2px solid #333; }
+        .modal-content { background: #1a1a1a; width: 90%; max-width: 700px; margin: 15% auto; padding: 60px; border-radius: 40px; font-size: 1.8rem; border: 1px solid #333; }
+
+        /* Cards Gigantes */
+        .map-card { background: var(--card); border-radius: 40px; padding: 50px; margin-bottom: 60px; border: 1px solid #222; box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
+        .map-title { font-size: 3rem; font-weight: 900; margin-bottom: 40px; }
         
-        /* Cards Grandes */
-        .map-card { background: var(--card); border-radius: 30px; padding: 40px; margin-bottom: 40px; border: 1px solid #222; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .map-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 25px; }
+        .res-container { display: none; margin-bottom: 30px; }
+        .res-input { width: 45%; padding: 25px; border-radius: 20px; border: none; background: #222; color: white; font-size: 1.5rem; margin-right: 15px; }
         
-        .res-container { display: none; margin-bottom: 25px; }
-        .res-input { width: 45%; padding: 20px; border-radius: 15px; border: none; background: #222; color: white; font-size: 1.3rem; margin-right: 10px; }
-        
-        .btn-play { display: block; width: 100%; padding: 30px; background: var(--accent); color: white; text-align: center; border-radius: 20px; font-size: 1.8rem; font-weight: bold; cursor: pointer; border: none; transition: 0.3s; }
-        .btn-play:active { transform: scale(0.98); }
+        .btn-play { display: block; width: 100%; padding: 40px; background: var(--accent); color: white; text-align: center; border-radius: 25px; font-size: 2.2rem; font-weight: 800; cursor: pointer; border: none; transition: 0.3s; }
+        .btn-play:hover { background: #ff0f1a; }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <h1>BY EZZKY <span class="gear-icon" onclick="toggleModal()">⚙️</span></h1>
+        <h1>BY EZZKY</h1>
+        <div class="gear-btn" onclick="toggleModal()">⚙️</div>
     </div>
 
     <div id="settingsModal" class="modal">
         <div class="modal-content">
-            <h2 style="font-size: 2.5rem;">Configurações</h2>
-            <label><input type="checkbox" onclick="toggleFPS()"> Mostrar FPS</label><br><br>
-            <label><input type="checkbox" onclick="toggleRes()"> Mostrar Resolução</label><br><br>
-            <label><input type="checkbox" onclick="toggleTheme()"> Modo Claro</label><br><br>
-            <button onclick="toggleModal()" style="padding: 20px 40px; font-size: 1.5rem; border-radius: 15px; border: none;">Fechar</button>
+            <h2 style="font-size: 3rem; margin-top:0;">Configurações</h2>
+            <label style="display:block; margin-bottom: 30px;"><input type="checkbox" style="transform: scale(1.5);"> Mostrar FPS</label>
+            <label style="display:block; margin-bottom: 30px;"><input type="checkbox" onclick="toggleRes()" style="transform: scale(1.5);"> Mostrar Resolução</label>
+            <button onclick="toggleModal()" style="width:100%; padding: 30px; font-size: 1.5rem; border-radius: 20px; border: none; background: #444; color: white;">Fechar</button>
         </div>
     </div>
 
+    <div class="map-card"><div class="map-title">Zurich</div><div class="res-container"><input type="number" class="res-input" id="w1" placeholder="Largura"><input type="number" class="res-input" id="h1" placeholder="Altura"></div><button class="btn-play" onclick="abrir('Games/Zurich/', 'w1', 'h1')">JOGAR</button></div>
+    <div class="map-card"><div class="map-title">Berlin</div><div class="res-container"><input type="number" class="res-input" id="w2" placeholder="Largura"><input type="number" class="res-input" id="h2" placeholder="Altura"></div><button class="btn-play" onclick="abrir('Games/Berlin/', 'w2', 'h2')">JOGAR</button></div>
+    <div class="map-card"><div class="map-title">Houston</div><div class="res-container"><input type="number" class="res-input" id="w3" placeholder="Largura"><input type="number" class="res-input" id="h3" placeholder="Altura"></div><button class="btn-play" onclick="abrir('Games/Houston/', 'w3', 'h3')">JOGAR</button></div>
+    <div class="map-card"><div class="map-title">Monaco</div><div class="res-container"><input type="number" class="res-input" id="w4" placeholder="Largura"><input type="number" class="res-input" id="h4" placeholder="Altura"></div><button class="btn-play" onclick="abrir('Games/Monaco/', 'w4', 'h4')">JOGAR</button></div>
+    <div class="map-card"><div class="map-title">San Francisco</div><div class="res-container"><input type="number" class="res-input" id="w5" placeholder="Largura"><input type="number" class="res-input" id="h5" placeholder="Altura"></div><button class="btn-play" onclick="abrir('Games/San Francisco/', 'w5', 'h5')">JOGAR</button></div>
+
     <script>
         function toggleModal() { let m = document.getElementById('settingsModal'); m.style.display = (m.style.display === 'block') ? 'none' : 'block'; }
-        function toggleTheme() { document.body.classList.toggle('light-mode'); }
         function toggleRes() { 
             let divs = document.querySelectorAll('.res-container');
             let isVisible = divs[0].style.display === 'block';
@@ -58,12 +65,5 @@
             window.open(url, '_blank', 'width='+w+',height='+h);
         }
     </script>
-
-    <div class="map-card"><div class="map-title">Zurich</div><div class="res-container"><input type="number" class="res-input" id="w1" placeholder="Largura"><input type="number" class="res-input" id="h1" placeholder="Altura"></div><button class="btn-play" onclick="abrir('Games/Zurich/', 'w1', 'h1')">JOGAR</button></div>
-    <div class="map-card"><div class="map-title">Berlin</div><div class="res-container"><input type="number" class="res-input" id="w2" placeholder="Largura"><input type="number" class="res-input" id="h2" placeholder="Altura"></div><button class="btn-play" onclick="abrir('Games/Berlin/', 'w2', 'h2')">JOGAR</button></div>
-    <div class="map-card"><div class="map-title">Houston</div><div class="res-container"><input type="number" class="res-input" id="w3" placeholder="Largura"><input type="number" class="res-input" id="h3" placeholder="Altura"></div><button class="btn-play" onclick="abrir('Games/Houston/', 'w3', 'h3')">JOGAR</button></div>
-    <div class="map-card"><div class="map-title">Monaco</div><div class="res-container"><input type="number" class="res-input" id="w4" placeholder="Largura"><input type="number" class="res-input" id="h4" placeholder="Altura"></div><button class="btn-play" onclick="abrir('Games/Monaco/', 'w4', 'h4')">JOGAR</button></div>
-    <div class="map-card"><div class="map-title">San Francisco</div><div class="res-container"><input type="number" class="res-input" id="w5" placeholder="Largura"><input type="number" class="res-input" id="h5" placeholder="Altura"></div><button class="btn-play" onclick="abrir('Games/San Francisco/', 'w5', 'h5')">JOGAR</button></div>
-
 </body>
 </html>
