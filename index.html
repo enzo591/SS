@@ -2,58 +2,52 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Subway Surfers - Menu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subway Surfers EZZKKYK</title>
     <style>
-        body { 
-            background: linear-gradient(135deg, #1a1a2e, #16213e); 
-            color: #ffffff; 
-            font-family: 'Segoe UI', sans-serif; 
-            text-align: center; 
-            margin: 0; 
-            padding: 20px;
-        }
-        h1 { 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            margin-bottom: 30px; 
-            text-shadow: 0 0 10px #00d2ff;
-        }
-        .menu-container {
-            display: grid;
-            gap: 15px;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-        .btn { 
-            padding: 18px; 
-            background: rgba(255, 255, 255, 0.1); 
-            border: 2px solid #00d2ff; 
-            color: white; 
-            text-decoration: none; 
-            border-radius: 12px; 
-            font-weight: bold; 
+        body { background-color: #0f0f0f; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; }
+        .header { text-align: center; margin-bottom: 30px; }
+        .map-card { 
+            background: #1a1a1a; 
+            border-radius: 20px; 
+            padding: 20px; 
+            margin-bottom: 20px; 
+            border: 1px solid #333;
             transition: 0.3s;
+        }
+        .map-card:hover { border-color: #00d2ff; }
+        .map-title { font-size: 1.5em; font-weight: bold; margin: 10px 0; color: #fff; }
+        .map-desc { color: #aaa; font-size: 0.9em; margin-bottom: 15px; }
+        .btn-play { 
+            display: block; width: 100%; padding: 15px; background: #fff; color: #000; 
+            text-align: center; text-decoration: none; border-radius: 10px; font-weight: bold;
             text-transform: uppercase;
         }
-        .btn:hover { 
-            background: #00d2ff; 
-            color: #000; 
-            box-shadow: 0 0 20px #00d2ff;
-        }
-        footer { margin-top: 40px; font-size: 0.8em; color: #888; }
     </style>
 </head>
 <body>
 
-    <h1>Subway Surfers</h1>
-    <div class="menu-container">
-        <a href="Games/Zurich/" class="btn">Zurich (EZZKKYK)</a>
-        <a href="Games/Berlin/" class="btn">Berlin</a>
-        <a href="Games/Houston/" class="btn">Houston</a>
-        <a href="Games/Monaco/" class="btn">Monaco</a>
-        <a href="Games/San Francisco/" class="btn">San Francisco</a>
+    <div class="header">
+        <h1>MAPAS DISPONÍVEIS</h1>
     </div>
 
-    <footer>Criado por EZZKKYK</footer>
+    <div class="map-card">
+        <div class="map-title">Zurich (EZZKKYK)</div>
+        <div class="map-desc">Versão personalizada por EZZKKYK</div>
+        <a href="Games/Zurich/" class="btn-play">Jogar</a>
+    </div>
+
+    <div class="map-card">
+        <div class="map-title">Berlin</div>
+        <div class="map-desc">Versão normal do mapa.</div>
+        <a href="Games/Berlin/" class="btn-play">Jogar</a>
+    </div>
+
+    <div class="map-card">
+        <div class="map-title">Houston</div>
+        <div class="map-desc">Versão normal do mapa.</div>
+        <a href="Games/Houston/" class="btn-play">Jogar</a>
+    </div>
+
 </body>
 </html>
