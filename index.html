@@ -5,11 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subway Surfers EZZKKYK</title>
     <style>
-        :root { --bg: #0f0f0f; --card: #1a1a1a; --text: #ffffff; --btn: #222; --select-bg: #333; }
-        .light-mode { --bg: #f0f0f0; --card: #ffffff; --text: #000000; --btn: #e0e0e0; --select-bg: #ccc; }
+        :root { --bg: #0f0f0f; --card: #1a1a1a; --text: #ffffff; --btn: #222; }
+        .light-mode { --bg: #f0f0f0; --card: #ffffff; --text: #000000; --btn: #e0e0e0; }
         
         body { background-color: var(--bg); color: var(--text); font-family: sans-serif; margin: 0; padding: 20px; transition: 0.3s; }
         .header { text-align: center; margin-bottom: 30px; }
         .map-card { background: var(--card); border-radius: 15px; padding: 20px; margin-bottom: 20px; border: 1px solid #333; transition: 0.3s; }
         .map-title { font-size: 1.3em; font-weight: bold; margin-bottom: 5px; }
         .map-desc { opacity: 0.7; font-size: 0.9em; margin-bottom: 15px; }
+        
+        /* Estilos de controles */
+        .res-input { width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #444; background: #333; color: white; box-sizing: border-box; }
+        .btn-play { display: block; width: 100%; padding: 15px; background: var(--btn); color: var(--text); text-align: center; text-decoration: none; border-radius: 10px; font-weight: bold; box-sizing: border-box; margin-top: 10px; cursor: pointer; border: none; }
+        
+        #theme-toggle { cursor: pointer; padding: 10px 20px; border-radius: 20px; border: 1px solid #444; background: #333; color: white; margin-bottom: 20px; }
+        #fps-counter { position: fixed; top: 10px; right: 10px; background: rgba(0,0,0,0.5); padding: 5px 10px; border-radius: 5px; color: #0f0; font-family: monospace; z-index: 999; }
+    </style>
+</head>
+<body>
+
+    <div id="fps-counter">FPS: --</div>
+
+    <div class="header">
+        <h1>MAPAS DISPONÍVEIS</h1>
+        <button id="theme-toggle" onclick="toggleTheme()">Alternar Tema</button>
+    </div>
+
+    <script>
+        function toggleTheme() { document.body.classList.toggle('light-mode'); }
+        
+        function abrirJogo(url, idWidth, idHeight) {
+            var w = document.getElementById(idWidth).value || 1280;
+            var h = document.getElementById(idHeight).value || 720;
+            window.open(url, '_blank', 'width=' + w + ',height=' + h);
+        }
+
+        // Contador de FPS
+        let lastTime = performance.now();
+        function updateFPS() {
+            let now = performance.now();
+            let fps = Math.round(1000 / (now - lastTime));
+            lastTime = now;
+            document.getElementById('fps-counter').innerText = 'FPS: ' + fps;
+            requestAnimationFrame(updateFPS);
+        }
+        updateFPS();
+    </script>
+
+    <div class="map-card">
+        <div class="map-title">Zurich (EZZKKYK)</div>
+        <div class="map-desc">Versão personalizada por EZZKKYK</div>
+        <input type="number" class="res-input" id="w1" placeholder="Largura (ex: 1280)">
+        <input type="number" class="res-input" id="h1" placeholder="Altura (ex: 720)">
+        <button class="btn-play" onclick="abrirJogo('Games/Zurich/', 'w1', 'h1')">JOGAR PERSONALIZADO</button>
+    </div>
+
+    <div class="map-card">
+        <div class="map-title">Berlin</div>
+        <input type="number" class="res-input" id="w2" placeholder="Largura">
+        <input type="number" class="res-input" id="h2" placeholder="Altura">
+        <button class="btn-play" onclick="abrirJogo('Games/Berlin/', 'w2', 'h2')">JOGAR PERSONALIZADO</button>
+    </div>
+
+</body>
+</html>
