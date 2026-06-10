@@ -4,26 +4,28 @@
     <meta charset="UTF-8">
     <title>Subway Surfers EZZKY</title>
     <style>
-        :root { --bg: #0f0f0f; --card: #1a1a1a; --text: #ffffff; --btn: #2d2d2d; }
-        .light-mode { --bg: #f0f0f0; --card: #ffffff; --text: #000000; --btn: #e0e0e0; }
-        body { background-color: var(--bg); color: var(--text); font-family: sans-serif; margin: 0; padding: 40px; transition: 0.3s; }
+        :root { --bg: #050505; --card: #121212; --text: #ffffff; --accent: #ff4d00; }
+        .light-mode { --bg: #f4f4f4; --card: #ffffff; --text: #000; --accent: #ff4d00; }
         
-        .header { text-align: center; margin-bottom: 50px; font-size: 1.5rem; }
-        .gear-icon { cursor: pointer; font-size: 35px; margin-left: 15px; vertical-align: middle; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; margin: 0; padding: 40px; transition: 0.4s; }
         
-        /* Modal Grande */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; }
-        .modal-content { background: var(--card); width: 90%; max-width: 500px; margin: 15% auto; padding: 40px; border-radius: 25px; font-size: 1.2rem; }
+        .header { text-align: center; margin-bottom: 60px; padding-top: 20px; }
+        .header h1 { font-size: 3.5rem; letter-spacing: -2px; margin: 0; }
+        .gear-icon { cursor: pointer; font-size: 40px; margin-left: 20px; vertical-align: middle; background: #222; padding: 10px; border-radius: 50%; }
+
+        /* Modal Estilo Premium */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; }
+        .modal-content { background: var(--card); width: 85%; max-width: 600px; margin: 20% auto; padding: 50px; border-radius: 30px; font-size: 1.5rem; border: 2px solid #333; }
         
-        /* Cards de Mapa Grandes */
-        .map-card { background: var(--card); border-radius: 25px; padding: 30px; margin-bottom: 30px; border: 1px solid #333; }
-        .map-title { font-size: 2rem; font-weight: bold; margin-bottom: 20px; }
+        /* Cards Grandes */
+        .map-card { background: var(--card); border-radius: 30px; padding: 40px; margin-bottom: 40px; border: 1px solid #222; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .map-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 25px; }
         
-        .res-container { display: none; margin-bottom: 20px; }
-        .res-input { width: 45%; padding: 15px; border-radius: 12px; border: 1px solid #444; background: #333; color: white; font-size: 1.1rem; }
+        .res-container { display: none; margin-bottom: 25px; }
+        .res-input { width: 45%; padding: 20px; border-radius: 15px; border: none; background: #222; color: white; font-size: 1.3rem; margin-right: 10px; }
         
-        /* Botão Jogar Grande */
-        .btn-play { display: block; width: 100%; padding: 25px; background: var(--btn); color: var(--text); text-align: center; border-radius: 15px; font-size: 1.5rem; font-weight: bold; cursor: pointer; border: none; }
+        .btn-play { display: block; width: 100%; padding: 30px; background: var(--accent); color: white; text-align: center; border-radius: 20px; font-size: 1.8rem; font-weight: bold; cursor: pointer; border: none; transition: 0.3s; }
+        .btn-play:active { transform: scale(0.98); }
     </style>
 </head>
 <body>
@@ -34,47 +36,16 @@
 
     <div id="settingsModal" class="modal">
         <div class="modal-content">
-            <h2>Configurações</h2>
+            <h2 style="font-size: 2.5rem;">Configurações</h2>
             <label><input type="checkbox" onclick="toggleFPS()"> Mostrar FPS</label><br><br>
             <label><input type="checkbox" onclick="toggleRes()"> Mostrar Resolução</label><br><br>
             <label><input type="checkbox" onclick="toggleTheme()"> Modo Claro</label><br><br>
-            <button onclick="toggleModal()" style="padding: 10px 20px;">Fechar</button>
+            <button onclick="toggleModal()" style="padding: 20px 40px; font-size: 1.5rem; border-radius: 15px; border: none;">Fechar</button>
         </div>
-    </div>
-
-    <div class="map-card">
-        <div class="map-title">Zurich</div>
-        <div class="res-container"><input type="number" class="res-input" id="w1" placeholder="Largura"><input type="number" class="res-input" id="h1" placeholder="Altura"></div>
-        <button class="btn-play" onclick="abrir('Games/Zurich/', 'w1', 'h1')">JOGAR</button>
-    </div>
-
-    <div class="map-card">
-        <div class="map-title">Berlin</div>
-        <div class="res-container"><input type="number" class="res-input" id="w2" placeholder="Largura"><input type="number" class="res-input" id="h2" placeholder="Altura"></div>
-        <button class="btn-play" onclick="abrir('Games/Berlin/', 'w2', 'h2')">JOGAR</button>
-    </div>
-
-    <div class="map-card">
-        <div class="map-title">Houston</div>
-        <div class="res-container"><input type="number" class="res-input" id="w3" placeholder="Largura"><input type="number" class="res-input" id="h3" placeholder="Altura"></div>
-        <button class="btn-play" onclick="abrir('Games/Houston/', 'w3', 'h3')">JOGAR</button>
-    </div>
-
-    <div class="map-card">
-        <div class="map-title">Monaco</div>
-        <div class="res-container"><input type="number" class="res-input" id="w4" placeholder="Largura"><input type="number" class="res-input" id="h4" placeholder="Altura"></div>
-        <button class="btn-play" onclick="abrir('Games/Monaco/', 'w4', 'h4')">JOGAR</button>
-    </div>
-
-    <div class="map-card">
-        <div class="map-title">San Francisco</div>
-        <div class="res-container"><input type="number" class="res-input" id="w5" placeholder="Largura"><input type="number" class="res-input" id="h5" placeholder="Altura"></div>
-        <button class="btn-play" onclick="abrir('Games/San Francisco/', 'w5', 'h5')">JOGAR</button>
     </div>
 
     <script>
         function toggleModal() { let m = document.getElementById('settingsModal'); m.style.display = (m.style.display === 'block') ? 'none' : 'block'; }
-        function toggleFPS() { /* Lógica FPS */ }
         function toggleTheme() { document.body.classList.toggle('light-mode'); }
         function toggleRes() { 
             let divs = document.querySelectorAll('.res-container');
@@ -82,10 +53,17 @@
             divs.forEach(d => d.style.display = isVisible ? 'none' : 'block');
         }
         function abrir(url, wId, hId) {
-            let w = document.getElementById(wId).value || 1280;
-            let h = document.getElementById(hId).value || 720;
+            let w = document.getElementById(wId)?.value || 1280;
+            let h = document.getElementById(hId)?.value || 720;
             window.open(url, '_blank', 'width='+w+',height='+h);
         }
     </script>
+
+    <div class="map-card"><div class="map-title">Zurich</div><div class="res-container"><input type="number" class="res-input" id="w1" placeholder="Largura"><input type="number" class="res-input" id="h1" placeholder="Altura"></div><button class="btn-play" onclick="abrir('Games/Zurich/', 'w1', 'h1')">JOGAR</button></div>
+    <div class="map-card"><div class="map-title">Berlin</div><div class="res-container"><input type="number" class="res-input" id="w2" placeholder="Largura"><input type="number" class="res-input" id="h2" placeholder="Altura"></div><button class="btn-play" onclick="abrir('Games/Berlin/', 'w2', 'h2')">JOGAR</button></div>
+    <div class="map-card"><div class="map-title">Houston</div><div class="res-container"><input type="number" class="res-input" id="w3" placeholder="Largura"><input type="number" class="res-input" id="h3" placeholder="Altura"></div><button class="btn-play" onclick="abrir('Games/Houston/', 'w3', 'h3')">JOGAR</button></div>
+    <div class="map-card"><div class="map-title">Monaco</div><div class="res-container"><input type="number" class="res-input" id="w4" placeholder="Largura"><input type="number" class="res-input" id="h4" placeholder="Altura"></div><button class="btn-play" onclick="abrir('Games/Monaco/', 'w4', 'h4')">JOGAR</button></div>
+    <div class="map-card"><div class="map-title">San Francisco</div><div class="res-container"><input type="number" class="res-input" id="w5" placeholder="Largura"><input type="number" class="res-input" id="h5" placeholder="Altura"></div><button class="btn-play" onclick="abrir('Games/San Francisco/', 'w5', 'h5')">JOGAR</button></div>
+
 </body>
 </html>
