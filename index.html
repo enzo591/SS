@@ -6,19 +6,14 @@
     <title>Subway Surfers EZZKKYK</title>
     <style>
         :root { --bg: #0f0f0f; --card: #1a1a1a; --text: #ffffff; --btn: #222; }
-        .light-mode { --bg: #f0f0f0; --card: #ffffff; --text: #000000; --btn: #e0e0e0; }
-        
         body { background-color: var(--bg); color: var(--text); font-family: sans-serif; margin: 0; padding: 20px; transition: 0.3s; }
-        .header { text-align: center; margin-bottom: 30px; }
-        .map-card { background: var(--card); border-radius: 15px; padding: 20px; margin-bottom: 20px; border: 1px solid #333; transition: 0.3s; }
-        .map-title { font-size: 1.3em; font-weight: bold; margin-bottom: 5px; }
-        .map-desc { opacity: 0.7; font-size: 0.9em; margin-bottom: 15px; }
-        
-        .res-input { width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #444; background: #333; color: white; box-sizing: border-box; }
-        .btn-play { display: block; width: 100%; padding: 15px; background: var(--btn); color: var(--text); text-align: center; text-decoration: none; border-radius: 10px; font-weight: bold; box-sizing: border-box; margin-top: 10px; cursor: pointer; border: none; }
-        
-        #theme-toggle { cursor: pointer; padding: 10px 20px; border-radius: 20px; border: 1px solid #444; background: #333; color: white; margin-bottom: 20px; }
-        #fps-counter { position: fixed; top: 10px; right: 10px; background: rgba(0,0,0,0.5); padding: 5px 10px; border-radius: 5px; color: #0f0; font-family: monospace; z-index: 999; }
+        .header { text-align: center; margin-bottom: 20px; }
+        .config-bar { background: #222; padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center; }
+        .map-card { background: var(--card); border-radius: 15px; padding: 20px; margin-bottom: 20px; border: 1px solid #333; }
+        .res-container { display: none; } /* Começa escondido */
+        .res-input { width: 48%; padding: 10px; border-radius: 8px; border: 1px solid #444; background: #333; color: white; }
+        .btn-play { display: block; width: 100%; padding: 15px; background: #333; color: white; text-align: center; border-radius: 10px; font-weight: bold; margin-top: 10px; cursor: pointer; border: none; }
+        #fps-counter { position: fixed; top: 10px; right: 10px; background: rgba(0,0,0,0.5); padding: 5px 10px; border-radius: 5px; color: #0f0; display: none; } /* Começa escondido */
     </style>
 </head>
 <body>
@@ -27,63 +22,44 @@
 
     <div class="header">
         <h1>MAPAS DISPONÍVEIS</h1>
-        <button id="theme-toggle" onclick="toggleTheme()">Alternar Tema</button>
+        <div class="config-bar">
+            <button onclick="toggleFPS()">FPS: <span id="fps-status">OFF</span></button>
+            <button onclick="toggleRes()">Resolução: <span id="res-status">OFF</span></button>
+        </div>
     </div>
 
     <script>
-        function toggleTheme() { document.body.classList.toggle('light-mode'); }
-        
-        function abrirJogo(url, idWidth, idHeight) {
-            var w = document.getElementById(idWidth).value || 1280;
-            var h = document.getElementById(idHeight).value || 720;
-            window.open(url, '_blank', 'width=' + w + ',height=' + h);
+        function toggleFPS() {
+            let el = document.getElementById('fps-counter');
+            let st = document.getElementById('fps-status');
+            el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+            st.innerText = (el.style.display === 'block') ? 'ON' : 'OFF';
         }
 
-        let lastTime = performance.now();
-        function updateFPS() {
-            let now = performance.now();
-            let fps = Math.round(1000 / (now - lastTime));
-            lastTime = now;
-            document.getElementById('fps-counter').innerText = 'FPS: ' + fps;
-            requestAnimationFrame(updateFPS);
+        function toggleRes() {
+            let divs = document.querySelectorAll('.res-container');
+            let st = document.getElementById('res-status');
+            let visible = divs[0].style.display === 'block';
+            divs.forEach(d => d.style.display = visible ? 'none' : 'block');
+            st.innerText = visible ? 'OFF' : 'ON';
         }
-        updateFPS();
+
+        function abrir(url, wId, hId) {
+            let w = document.getElementById(wId).value || 1280;
+            let h = document.getElementById(hId).value || 720;
+            window.open(url, '_blank', 'width='+w+',height='+h);
+        }
     </script>
 
     <div class="map-card">
         <div class="map-title">Zurich (EZZKKYK)</div>
-        <input type="number" class="res-input" id="w1" placeholder="Largura (ex: 1280)">
-        <input type="number" class="res-input" id="h1" placeholder="Altura (ex: 720)">
-        <button class="btn-play" onclick="abrirJogo('Games/Zurich/', 'w1', 'h1')">JOGAR PERSONALIZADO</button>
-    </div>
-
-    <div class="map-card">
-        <div class="map-title">Berlin</div>
-        <input type="number" class="res-input" id="w2" placeholder="Largura">
-        <input type="number" class="res-input" id="h2" placeholder="Altura">
-        <button class="btn-play" onclick="abrirJogo('Games/Berlin/', 'w2', 'h2')">JOGAR PERSONALIZADO</button>
-    </div>
-
-    <div class="map-card">
-        <div class="map-title">Houston</div>
-        <input type="number" class="res-input" id="w3" placeholder="Largura">
-        <input type="number" class="res-input" id="h3" placeholder="Altura">
-        <button class="btn-play" onclick="abrirJogo('Games/Houston/', 'w3', 'h3')">JOGAR PERSONALIZADO</button>
-    </div>
-
-    <div class="map-card">
-        <div class="map-title">Monaco</div>
-        <input type="number" class="res-input" id="w4" placeholder="Largura">
-        <input type="number" class="res-input" id="h4" placeholder="Altura">
-        <button class="btn-play" onclick="abrirJogo('Games/Monaco/', 'w4', 'h4')">JOGAR PERSONALIZADO</button>
-    </div>
-
-    <div class="map-card">
-        <div class="map-title">San Francisco</div>
-        <input type="number" class="res-input" id="w5" placeholder="Largura">
-        <input type="number" class="res-input" id="h5" placeholder="Altura">
-        <button class="btn-play" onclick="abrirJogo('Games/San Francisco/', 'w5', 'h5')">JOGAR PERSONALIZADO</button>
+        <div class="res-container">
+            <input type="number" class="res-input" id="w1" placeholder="Largura">
+            <input type="number" class="res-input" id="h1" placeholder="Altura">
+        </div>
+        <button class="btn-play" onclick="abrir('Games/Zurich/', 'w1', 'h1')">JOGAR</button>
     </div>
 
 </body>
 </html>
+
