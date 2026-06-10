@@ -10,18 +10,18 @@
         .header { text-align: center; margin-bottom: 20px; }
         .config-bar { background: #222; padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center; }
         .map-card { background: var(--card); border-radius: 15px; padding: 20px; margin-bottom: 20px; border: 1px solid #333; }
-        .res-container { display: none; } /* Começa escondido */
+        .res-container { display: none; margin-top: 10px; } 
         .res-input { width: 48%; padding: 10px; border-radius: 8px; border: 1px solid #444; background: #333; color: white; }
         .btn-play { display: block; width: 100%; padding: 15px; background: #333; color: white; text-align: center; border-radius: 10px; font-weight: bold; margin-top: 10px; cursor: pointer; border: none; }
-        #fps-counter { position: fixed; top: 10px; right: 10px; background: rgba(0,0,0,0.5); padding: 5px 10px; border-radius: 5px; color: #0f0; display: none; } /* Começa escondido */
+        #fps-counter { position: fixed; top: 10px; right: 10px; background: rgba(0,0,0,0.5); padding: 5px 10px; border-radius: 5px; color: #0f0; display: none; }
     </style>
 </head>
 <body>
 
-    <div id="fps-counter">FPS: --</div>
+    <div id="fps-counter">FPS: 60</div>
 
     <div class="header">
-        <h1>MAPAS DISPONÍVEIS</h1>
+        <h1>BY EZZKY</h1>
         <div class="config-bar">
             <button onclick="toggleFPS()">FPS: <span id="fps-status">OFF</span></button>
             <button onclick="toggleRes()">Resolução: <span id="res-status">OFF</span></button>
@@ -39,9 +39,9 @@
         function toggleRes() {
             let divs = document.querySelectorAll('.res-container');
             let st = document.getElementById('res-status');
-            let visible = divs[0].style.display === 'block';
-            divs.forEach(d => d.style.display = visible ? 'none' : 'block');
-            st.innerText = visible ? 'OFF' : 'ON';
+            let isVisible = divs[0].style.display === 'block';
+            divs.forEach(d => d.style.display = isVisible ? 'none' : 'block');
+            st.innerText = isVisible ? 'OFF' : 'ON';
         }
 
         function abrir(url, wId, hId) {
@@ -52,14 +52,34 @@
     </script>
 
     <div class="map-card">
-        <div class="map-title">Zurich (EZZKKYK)</div>
-        <div class="res-container">
-            <input type="number" class="res-input" id="w1" placeholder="Largura">
-            <input type="number" class="res-input" id="h1" placeholder="Altura">
-        </div>
+        <div class="map-title">Zurich</div>
+        <div class="res-container"><input type="number" class="res-input" id="w1" placeholder="Largura"><input type="number" class="res-input" id="h1" placeholder="Altura"></div>
         <button class="btn-play" onclick="abrir('Games/Zurich/', 'w1', 'h1')">JOGAR</button>
+    </div>
+
+    <div class="map-card">
+        <div class="map-title">Berlin</div>
+        <div class="res-container"><input type="number" class="res-input" id="w2" placeholder="Largura"><input type="number" class="res-input" id="h2" placeholder="Altura"></div>
+        <button class="btn-play" onclick="abrir('Games/Berlin/', 'w2', 'h2')">JOGAR</button>
+    </div>
+
+    <div class="map-card">
+        <div class="map-title">Houston</div>
+        <div class="res-container"><input type="number" class="res-input" id="w3" placeholder="Largura"><input type="number" class="res-input" id="h3" placeholder="Altura"></div>
+        <button class="btn-play" onclick="abrir('Games/Houston/', 'w3', 'h3')">JOGAR</button>
+    </div>
+
+    <div class="map-card">
+        <div class="map-title">Monaco</div>
+        <div class="res-container"><input type="number" class="res-input" id="w4" placeholder="Largura"><input type="number" class="res-input" id="h4" placeholder="Altura"></div>
+        <button class="btn-play" onclick="abrir('Games/Monaco/', 'w4', 'h4')">JOGAR</button>
+    </div>
+
+    <div class="map-card">
+        <div class="map-title">San Francisco</div>
+        <div class="res-container"><input type="number" class="res-input" id="w5" placeholder="Largura"><input type="number" class="res-input" id="h5" placeholder="Altura"></div>
+        <button class="btn-play" onclick="abrir('Games/San Francisco/', 'w5', 'h5')">JOGAR</button>
     </div>
 
 </body>
 </html>
-
