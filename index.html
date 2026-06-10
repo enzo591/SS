@@ -17,7 +17,9 @@
 
         /* Modal */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; }
-        .modal-content { background: #161616; width: 90%; max-width: 600px; margin: 10% auto; padding: 30px; border-radius: 20px; border: 1px solid #333; }
+        .modal-content { background: #161616; width: 90%; max-width: 900px; height: 80vh; margin: 5vh auto; border-radius: 20px; border: 1px solid #333; display: flex; overflow: hidden; }
+        .sidebar { width: 200px; border-right: 1px solid #333; padding: 20px; }
+        .settings-view { flex-grow: 1; padding: 30px; }
 
         /* Cards */
         .map-card { background: var(--card); border-radius: 25px; padding: 30px; margin-bottom: 30px; border: 1px solid #222; }
@@ -34,7 +36,7 @@
 
     <div class="map-card">
         <div class="map-title">Zurich</div>
-        <span class="map-desc">SUÍÇA - Alpes urbanos. Versão completa.</span>
+        <span class="map-desc">SUÍÇA - Alpes urbanos. Versão completa do mapa.</span>
         <button class="btn-play" onclick="abrir('Games/Zurich/')">JOGAR</button>
     </div>
 
@@ -46,19 +48,19 @@
 
     <div class="map-card">
         <div class="map-title">Houston</div>
-        <span class="map-desc">EUA - Clima espacial e exploração.</span>
+        <span class="map-desc">EUA - Clima espacial e exploração urbana.</span>
         <button class="btn-play" onclick="abrir('Games/Houston/')">JOGAR</button>
     </div>
 
     <div class="map-card">
         <div class="map-title">Mónaco</div>
-        <span class="map-desc">MÓNACO - Circuito luxuoso.</span>
+        <span class="map-desc">MÓNACO - O circuito mais luxuoso do mundo.</span>
         <button class="btn-play" onclick="abrir('Games/Monaco/')">JOGAR</button>
     </div>
 
     <div class="map-card">
         <div class="map-title">San Francisco</div>
-        <span class="map-desc">EUA - Ponte icónica e colinas.</span>
+        <span class="map-desc">EUA - A ponte icónica e colinas urbanas.</span>
         <button class="btn-play" onclick="abrir('Games/San Francisco/')">JOGAR</button>
     </div>
 
@@ -70,13 +72,21 @@
 
     <div id="settingsModal" class="modal">
         <div class="modal-content">
-            <h2>Configurações do Jogo</h2>
-            <button onclick="toggleModal()" style="padding: 10px 20px; cursor: pointer;">Fechar</button>
+            <div class="sidebar">
+                <h3>Configurações</h3>
+                <p>Site</p><p>Controles</p><p>Tela</p><p>Overlays</p>
+            </div>
+            <div class="settings-view">
+                <h2>Configurações do Jogo</h2>
+                <label><input type="checkbox"> Mostrar FPS</label><br><br>
+                <label>Resolução: <input type="text" value="1280x720"></label><br><br>
+                <button onclick="toggleModal()" style="padding:10px; cursor:pointer;">Fechar</button>
+            </div>
         </div>
     </div>
 
     <script>
-        function toggleModal() { let m = document.getElementById('settingsModal'); m.style.display = (m.style.display === 'block') ? 'none' : 'block'; }
+        function toggleModal() { let m = document.getElementById('settingsModal'); m.style.display = (m.style.display === 'flex') ? 'none' : 'flex'; }
         function abrir(url) { window.open(url, '_blank'); }
     </script>
 </body>
