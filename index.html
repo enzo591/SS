@@ -5,55 +5,39 @@
     <title>Subway Surfers EZZKY</title>
     <style>
         :root { --bg: #0a0a0a; --card: #161616; --text: #ffffff; }
-        body { background-color: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; padding: 40px 20px; transition: 0.3s; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; padding: 40px 20px 120px 20px; }
         
         .header { text-align: center; margin-bottom: 50px; }
-        
-        /* Título RGB */
-        .rgb-text { font-size: 3rem; font-weight: 900; background: linear-gradient(90deg, #ff0000, #ff8000, #ffff00, #00ff00, #00ffff, #0000ff, #8000ff); background-clip: text; -webkit-background-clip: text; color: transparent; animation: rgb-anim 5s linear infinite; margin-bottom: 10px; }
+        .rgb-text { font-size: 3rem; font-weight: 900; background: linear-gradient(90deg, #ff0000, #ff8000, #ffff00, #00ff00, #00ffff, #0000ff, #8000ff); background-clip: text; -webkit-background-clip: text; color: transparent; animation: rgb-anim 5s linear infinite; }
         @keyframes rgb-anim { to { filter: hue-rotate(360deg); } }
 
-        /* Engrenagem Vidro */
-        .gear-container { display: flex; justify-content: center; margin-top: 20px; }
-        .gear-btn { font-size: 2.5rem; cursor: pointer; background: rgba(0,0,0,0.3); backdrop-filter: blur(10px); padding: 15px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); }
+        /* Barra Inferior */
+        .bottom-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(20, 20, 20, 0.8); backdrop-filter: blur(15px); padding: 15px 30px; border-radius: 50px; display: flex; gap: 40px; border: 1px solid #333; z-index: 999; }
+        .icon { font-size: 1.5rem; cursor: pointer; }
 
         /* Modal */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; }
-        .modal-content { background: #161616; width: 85%; max-width: 500px; margin: 20% auto; padding: 40px; border-radius: 25px; border: 1px solid #333; }
-        
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; }
+        .modal-content { background: #161616; width: 90%; max-width: 600px; margin: 10% auto; padding: 30px; border-radius: 20px; border: 1px solid #333; }
+
         /* Cards */
         .map-card { background: var(--card); border-radius: 25px; padding: 30px; margin-bottom: 30px; border: 1px solid #222; }
-        .map-title { font-size: 1.8rem; font-weight: 800; margin: 0; }
+        .map-title { font-size: 1.8rem; font-weight: 800; }
         .map-desc { font-size: 0.9rem; color: #aaa; margin-bottom: 15px; display: block; }
-        
-        /* Botão RGB */
-        .btn-play { display: block; width: 100%; padding: 15px; background: linear-gradient(90deg, #ff0000, #0000ff); color: white; text-align: center; border-radius: 12px; font-size: 1.2rem; font-weight: 700; cursor: pointer; border: none; text-decoration: none; }
+        .btn-play { display: block; width: 100%; padding: 15px; background: linear-gradient(90deg, #ff0000, #0000ff); color: white; text-align: center; border-radius: 12px; font-weight: 700; cursor: pointer; border: none; }
     </style>
 </head>
 <body>
 
     <div class="header">
         <h1 class="rgb-text">BY EZZKY</h1>
-        <div class="gear-container">
-            <div class="gear-btn" onclick="toggleModal()">⚙️</div>
-        </div>
-    </div>
-
-    <div id="settingsModal" class="modal">
-        <div class="modal-content">
-            <h2 style="margin-top:0;">Configurações</h2>
-            <label><input type="checkbox" checked> Modo Noturno</label><br><br>
-            <label>Resolução: <input type="text" value="1280x720" style="width:80px;"></label><br><br>
-            <button onclick="toggleModal()" style="width:100%; padding: 10px; border-radius: 8px; border: none; background: #333; color: white; cursor: pointer;">Fechar</button>
-        </div>
     </div>
 
     <div class="map-card">
         <div class="map-title">Zurich</div>
-        <span class="map-desc">SUÍÇA - Alpes urbanos. Versão completa do mapa.</span>
+        <span class="map-desc">SUÍÇA - Alpes urbanos. Versão completa.</span>
         <button class="btn-play" onclick="abrir('Games/Zurich/')">JOGAR</button>
     </div>
-    
+
     <div class="map-card">
         <div class="map-title">Berlin</div>
         <span class="map-desc">ALEMANHA - Cenas urbanas e metrô clássico.</span>
@@ -62,20 +46,33 @@
 
     <div class="map-card">
         <div class="map-title">Houston</div>
-        <span class="map-desc">EUA - Clima espacial e exploração urbana.</span>
+        <span class="map-desc">EUA - Clima espacial e exploração.</span>
         <button class="btn-play" onclick="abrir('Games/Houston/')">JOGAR</button>
     </div>
 
     <div class="map-card">
         <div class="map-title">Mónaco</div>
-        <span class="map-desc">MÓNACO - O circuito mais luxuoso do mundo.</span>
+        <span class="map-desc">MÓNACO - Circuito luxuoso.</span>
         <button class="btn-play" onclick="abrir('Games/Monaco/')">JOGAR</button>
     </div>
 
     <div class="map-card">
         <div class="map-title">San Francisco</div>
-        <span class="map-desc">EUA - A ponte icónica e colinas urbanas.</span>
+        <span class="map-desc">EUA - Ponte icónica e colinas.</span>
         <button class="btn-play" onclick="abrir('Games/San Francisco/')">JOGAR</button>
+    </div>
+
+    <div class="bottom-bar">
+        <div class="icon">🏃</div>
+        <div class="icon">Mapas</div>
+        <div class="icon" onclick="toggleModal()">⚙️</div>
+    </div>
+
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <h2>Configurações do Jogo</h2>
+            <button onclick="toggleModal()" style="padding: 10px 20px; cursor: pointer;">Fechar</button>
+        </div>
     </div>
 
     <script>
