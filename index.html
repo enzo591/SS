@@ -5,60 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subway Surfers EZZKKYK</title>
     <style>
-        :root { --bg: #0f0f0f; --card: #1a1a1a; --text: #ffffff; --btn: #222; }
-        .light-mode { --bg: #f0f0f0; --card: #ffffff; --text: #000000; --btn: #e0e0e0; }
+        :root { --bg: #0f0f0f; --card: #1a1a1a; --text: #ffffff; --btn: #222; --select-bg: #333; }
+        .light-mode { --bg: #f0f0f0; --card: #ffffff; --text: #000000; --btn: #e0e0e0; --select-bg: #ccc; }
         
         body { background-color: var(--bg); color: var(--text); font-family: sans-serif; margin: 0; padding: 20px; transition: 0.3s; }
         .header { text-align: center; margin-bottom: 30px; }
         .map-card { background: var(--card); border-radius: 15px; padding: 20px; margin-bottom: 20px; border: 1px solid #333; transition: 0.3s; }
         .map-title { font-size: 1.3em; font-weight: bold; margin-bottom: 5px; }
         .map-desc { opacity: 0.7; font-size: 0.9em; margin-bottom: 15px; }
-        .btn-play { display: block; width: 100%; padding: 15px; background: var(--btn); color: var(--text); text-align: center; text-decoration: none; border-radius: 10px; font-weight: bold; box-sizing: border-box; }
-        
-        #theme-toggle { cursor: pointer; padding: 10px 20px; border-radius: 20px; border: 1px solid #444; background: #333; color: white; margin-bottom: 20px; }
-    </style>
-</head>
-<body>
-
-    <div class="header">
-        <h1>MAPAS DISPONÍVEIS</h1>
-        <button id="theme-toggle" onclick="toggleTheme()">Alternar Tema</button>
-    </div>
-
-    <div class="map-card">
-        <div class="map-title">Zurich (EZZKKYK)</div>
-        <div class="map-desc">Versão personalizada por EZZKKYK</div>
-        <a href="Games/Zurich/" class="btn-play">JOGAR</a>
-    </div>
-
-    <div class="map-card">
-        <div class="map-title">Berlin</div>
-        <div class="map-desc">Versão normal do mapa.</div>
-        <a href="Games/Berlin/" class="btn-play">JOGAR</a>
-    </div>
-
-    <div class="map-card">
-        <div class="map-title">Houston</div>
-        <div class="map-desc">Versão normal do mapa.</div>
-        <a href="Games/Houston/" class="btn-play">JOGAR</a>
-    </div>
-
-    <div class="map-card">
-        <div class="map-title">Monaco</div>
-        <div class="map-desc">Versão normal do mapa.</div>
-        <a href="Games/Monaco/" class="btn-play">JOGAR</a>
-    </div>
-
-    <div class="map-card">
-        <div class="map-title">San Francisco</div>
-        <div class="map-desc">Versão normal do mapa.</div>
-        <a href="Games/San Francisco/" class="btn-play">JOGAR</a>
-    </div>
-
-    <script>
-        function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-        }
-    </script>
-</body>
-</html>
