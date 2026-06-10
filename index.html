@@ -1,20 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-    <title>Subway Surfers Menu</title>
+    <meta charset="UTF-8">
+    <title>Subway Surfers - Menu</title>
     <style>
-        body { font-family: sans-serif; text-align: center; background: #222; color: white; padding-top: 50px; }
-        .btn { display: block; width: 200px; margin: 10px auto; padding: 15px; background: #007bff; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; }
-        .btn:hover { background: #0056b3; }
+        body { 
+            background: linear-gradient(135deg, #1a1a2e, #16213e); 
+            color: #ffffff; 
+            font-family: 'Segoe UI', sans-serif; 
+            text-align: center; 
+            margin: 0; 
+            padding: 20px;
+        }
+        h1 { 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            margin-bottom: 30px; 
+            text-shadow: 0 0 10px #00d2ff;
+        }
+        .menu-container {
+            display: grid;
+            gap: 15px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .btn { 
+            padding: 18px; 
+            background: rgba(255, 255, 255, 0.1); 
+            border: 2px solid #00d2ff; 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 12px; 
+            font-weight: bold; 
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+        .btn:hover { 
+            background: #00d2ff; 
+            color: #000; 
+            box-shadow: 0 0 20px #00d2ff;
+        }
+        footer { margin-top: 40px; font-size: 0.8em; color: #888; }
     </style>
 </head>
 <body>
-    <h1>Escolha a Cidade</h1>
-    <a href="Games/Zurich/" class="btn">Zurich (EZZKKYK)</a>
-    <a href="Games/Berlin/" class="btn">Berlin</a>
-    <a href="Games/Houston/" class="btn">Houston</a>
-    <a href="Games/Monaco/" class="btn">Monaco</a>
-    <a href="Games/San Francisco/" class="btn">San Francisco</a>
+
+    <h1>Subway Surfers</h1>
+    <div class="menu-container">
+        <a href="Games/Zurich/" class="btn">Zurich (EZZKKYK)</a>
+        <a href="Games/Berlin/" class="btn">Berlin</a>
+        <a href="Games/Houston/" class="btn">Houston</a>
+        <a href="Games/Monaco/" class="btn">Monaco</a>
+        <a href="Games/San Francisco/" class="btn">San Francisco</a>
+    </div>
+
+    <footer>Criado por EZZKKYK</footer>
 </body>
 </html>
 
