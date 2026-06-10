@@ -46,4 +46,15 @@
         </div>
     </div>
 
-    <div class="map-card"><div class="map
+    <div class="map-card"><div class="map-title">Zurich</div><button class="btn-play" onclick="abrir('Games/Zurich/')">JOGAR</button></div>
+    <div class="map-card"><div class="map-title">Berlin</div><button class="btn-play" onclick="abrir('Games/Berlin/')">JOGAR</button></div>
+    <div class="map-card"><div class="map-title">Houston</div><button class="btn-play" onclick="abrir('Games/Houston/')">JOGAR</button></div>
+    <div class="map-card"><div class="map-title">Monaco</div><button class="btn-play" onclick="abrir('Games/Monaco/')">JOGAR</button></div>
+    <div class="map-card"><div class="map-title">San Francisco</div><button class="btn-play" onclick="abrir('Games/San Francisco/')">JOGAR</button></div>
+
+    <script>
+        function toggleModal() { let m = document.getElementById('settingsModal'); m.style.display = (m.style.display === 'block') ? 'none' : 'block'; }
+        function abrir(url) { window.open(url, '_blank'); }
+    </script>
+</body>
+</html>
