@@ -12,4 +12,71 @@
         
         /* Título RGB */
         .header { text-align: center; margin-bottom: 50px; }
-        .rgb-text { font-size: 3rem; font-weight: 900; background: linear-gradient(90deg, #ff0000, #ff8000, #ffff00, #00ff00, #00ffff, #0000ff, #
+        .rgb-text { font-size: 3rem; font-weight: 900; background: linear-gradient(90deg, #ff0000, #ff8000, #ffff00, #00ff00, #00ffff, #0000ff, #8000ff); background-clip: text; -webkit-background-clip: text; color: transparent; animation: rgb-anim 5s linear infinite; margin-bottom: 10px; }
+        @keyframes rgb-anim { to { filter: hue-rotate(360deg); } }
+
+        /* Engrenagem Vidro */
+        .gear-container { display: flex; justify-content: center; }
+        .gear-btn { font-size: 2.5rem; cursor: pointer; background: rgba(0,0,0,0.3); backdrop-filter: blur(10px); padding: 15px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
+        .gear-btn:hover { background: rgba(0,0,0,0.5); transform: rotate(90deg); }
+
+        /* Modal */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; }
+        .modal-content { background: var(--card); width: 85%; max-width: 500px; margin: 20% auto; padding: 40px; border-radius: 25px; border: 1px solid #333; }
+        
+        /* Cards */
+        .map-card { background: var(--card); border-radius: 25px; padding: 30px; margin-bottom: 30px; border: 1px solid #222; }
+        .map-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 20px; }
+        
+        .res-container { display: none; margin-bottom: 15px; }
+        .res-input { width: 45%; padding: 12px; border-radius: 10px; border: none; background: #222; color: white; font-size: 1rem; margin-right: 10px; }
+        
+        .btn-play { display: block; width: 100%; padding: 22px; background: #222; color: white; text-align: center; border-radius: 15px; font-size: 1.4rem; font-weight: 700; cursor: pointer; border: none; }
+        
+        #fps-counter { position: fixed; top: 10px; left: 10px; background: rgba(0,0,0,0.5); padding: 5px; border-radius: 5px; color: #0f0; display: none; }
+    </style>
+</head>
+<body>
+
+    <div id="fps-counter">FPS: 60</div>
+
+    <div class="header">
+        <h1 class="rgb-text">BY EZZKY</h1>
+        <div class="gear-container">
+            <div class="gear-btn" onclick="toggleModal()">⚙️</div>
+        </div>
+    </div>
+
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <h2 style="margin-top:0;">Configurações</h2>
+            <label style="display:block; margin-bottom: 20px;"><input type="checkbox" onclick="toggleFPS()"> Mostrar FPS</label>
+            <label style="display:block; margin-bottom: 20px;"><input type="checkbox" onclick="toggleRes()"> Mostrar Resolução</label>
+            <label style="display:block; margin-bottom: 20px;"><input type="checkbox" onclick="toggleTheme()"> Modo Claro/Noturno</label>
+            <button onclick="toggleModal()" style="width:100%; padding: 15px; border-radius: 12px; border: none; background: #333; color: white; cursor: pointer;">Fechar</button>
+        </div>
+    </div>
+
+    <div class="map-card"><div class="map-title">Zurich</div><div class="res-container"><input type="number" class="res-input" id="w1" placeholder="Largura"><input type="number" class="res-input" id="h1" placeholder="Altura"></div><button class="btn-play" onclick="abrir('Games/Zurich/', 'w1', 'h1')">JOGAR</button></div>
+    <div class="map-card"><div class="map-title">Berlin</div><div class="res-container"><input type="number" class="res-input" id="w2" placeholder="Largura"><input type="number" class="res-input" id="h2" placeholder="Altura"></div><button class="btn-play" onclick="abrir('Games/Berlin/', 'w2', 'h2')">JOGAR</button></div>
+    <div class="map-card"><div class="map-title">Houston</div><div class="res-container"><input type="number" class="res-input" id="w3" placeholder="Largura"><input type="number" class="res-input" id="h3" placeholder="Altura"></div><button class="btn-play" onclick="abrir('Games/Houston/', 'w3', 'h3')">JOGAR</button></div>
+    <div class="map-card"><div class="map-title">Monaco</div><div class="res-container"><input type="number" class="res-input" id="w4" placeholder="Largura"><input type="number" class="res-input" id="h4" placeholder="Altura"></div><button class="btn-play" onclick="abrir('Games/Monaco/', 'w4', 'h4')">JOGAR</button></div>
+    <div class="map-card"><div class="map-title">San Francisco</div><div class="res-container"><input type="number" class="res-input" id="w5" placeholder="Largura"><input type="number" class="res-input" id="h5" placeholder="Altura"></div><button class="btn-play" onclick="abrir('Games/San Francisco/', 'w5', 'h5')">JOGAR</button></div>
+
+    <script>
+        function toggleModal() { let m = document.getElementById('settingsModal'); m.style.display = (m.style.display === 'block') ? 'none' : 'block'; }
+        function toggleFPS() { let el = document.getElementById('fps-counter'); el.style.display = (el.style.display === 'block') ? 'none' : 'block'; }
+        function toggleTheme() { document.body.classList.toggle('light-mode'); }
+        function toggleRes() { 
+            let divs = document.querySelectorAll('.res-container');
+            let isVisible = divs[0].style.display === 'block';
+            divs.forEach(d => d.style.display = isVisible ? 'none' : 'block');
+        }
+        function abrir(url, wId, hId) {
+            let w = document.getElementById(wId)?.value || 1280;
+            let h = document.getElementById(hId)?.value || 720;
+            window.open(url, '_blank', 'width='+w+',height='+h);
+        }
+    </script>
+</body>
+</html>
