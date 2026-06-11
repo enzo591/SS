@@ -3,67 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subway Surfers</title>
+    <title>Subway Surfers - Home</title>
     <style>
-        :root { --bg: #0a0a0a; --card: #161616; --text: #ffffff; --subtext: #888; }
-        body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; padding: 20px; padding-bottom: 100px; }
+        body { margin: 0; background-color: #0d0d0d; color: white; font-family: sans-serif; }
+        .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 15px; padding-bottom: 80px; }
+        .card { background: #1a1a1a; border-radius: 15px; overflow: hidden; text-align: center; padding-bottom: 12px; border: 1px solid #333; }
+        .card img { width: 100%; height: 110px; object-fit: cover; }
+        .card h3 { margin: 8px 0 4px; font-size: 15px; }
+        .btn-jogar { background: #333; color: white; border: none; padding: 8px 25px; border-radius: 6px; cursor: pointer; font-weight: bold; }
         
-        .header { margin-bottom: 20px; }
-        .header h1 { margin: 0; font-size: 1.5rem; }
+        .navbar { position: fixed; bottom: 0; width: 100%; background: #111; display: flex; justify-content: space-around; padding: 15px 0; border-top: 1px solid #333; z-index: 100; }
+        .navbar span { cursor: pointer; font-size: 14px; font-weight: bold; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-
-        .card { background: var(--card); border-radius: 16px; padding: 16px; border: 1px solid #222; }
-        .card img { width: 100%; height: 160px; object-fit: cover; border-radius: 12px; margin-bottom: 12px; }
-        
-        .card h3 { margin: 0; font-size: 1.2rem; }
-        .card p { color: var(--subtext); font-size: 0.85rem; margin: 5px 0 15px 0; }
-        
-        .btn-play { background: #fff; color: #000; border: none; width: 100%; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 0.8rem; }
-
-        .nav-bottom { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #111; padding: 10px 25px; border-radius: 50px; border: 1px solid #333; display: flex; gap: 30px; z-index: 1000; }
-        .nav-bottom span { color: #fff; font-size: 0.9rem; cursor: pointer; }
+        #settings-modal { display: none; position: fixed; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); padding: 20px; box-sizing: border-box; z-index: 200; }
+        .config-item { margin-bottom: 20px; }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>Home</h1>
-    </div>
-
-    <div class="grid">
+    <div class="grid-container">
+        <!-- Mapa 1 -->
         <div class="card">
-            <img src="1000059745.png" alt="Zurich">
-            <h3>Zurich</h3>
-            <p>Alpes urbanos. Versão normal do mapa.</p>
-            <button class="btn-play" onclick="window.location.href='Games/Zurich/'">Jogar</button>
-        </div>
-
-        <div class="card">
-            <img src="1000059746.jpg" alt="Houston">
-            <h3>Houston</h3>
-            <p>Space themes & Urban park.</p>
-            <button class="btn-play" onclick="window.location.href='Games/Houston/'">Jogar</button>
-        </div>
-
-        <div class="card">
-            <img src="1000059747.webp" alt="Monaco">
+            <img src="thumb_monaco.jpg" alt="Monaco">
             <h3>Monaco</h3>
-            <p>Luxurious race circuit & Marina.</p>
-            <button class="btn-play" onclick="window.location.href='Games/Monaco/'">Jogar</button>
+            <button class="btn-jogar" onclick="window.location.href='Games/Monaco/index.html'">JOGAR</button>
         </div>
-
+        <!-- Mapa 2 -->
         <div class="card">
-            <img src="1000059748.jpg" alt="San Francisco">
+            <img src="thumb_zurich.jpg" alt="Zurich">
+            <h3>Zurich</h3>
+            <button class="btn-jogar" onclick="window.location.href='Games/Zurich/index.html'">JOGAR</button>
+        </div>
+        <!-- Mapa 3 -->
+        <div class="card">
+            <img src="thumb_houston.jpg" alt="Houston">
+            <h3>Houston</h3>
+            <button class="btn-jogar" onclick="window.location.href='Games/Houston/index.html'">JOGAR</button>
+        </div>
+        <!-- Mapa 4 -->
+        <div class="card">
+            <img src="thumb_sanfrancisco.jpg" alt="San Francisco">
             <h3>San Francisco</h3>
-            <p>Golden Gate Bridge & Sunny park.</p>
-            <button class="btn-play" onclick="window.location.href='Games/SanFrancisco/'">Jogar</button>
+            <button class="btn-jogar" onclick="window.location.href='Games/SanFrancisco/index.html'">JOGAR</button>
         </div>
     </div>
 
-    <div class="nav-bottom">
-        <span>Mapas</span>
-        <span onclick="window.location.href='config.html'">Config</span>
+    <div class="navbar">
+        <span onclick="window.location.reload()">MAPAS</span>
+        <span onclick="document.getElementById('settings-modal').style.display='block'">⚙️ CONFIG</span>
+    </div>
+
+    <div id="settings-modal">
+        <h2>Configurações</h2>
+        <div class="config-item">
+            <label>Idioma:</label><br>
+            <select><option>Português (BR)</option><option>English</option></select>
+        </div>
+        <div class="config-item">
+            <label>Resolução:</label><br>
+            <input type="range" style="width: 100%">
+        </div>
+        <div class="config-item">
+            <label>FPS:</label><br>
+            <select><option>60 FPS</option><option>30 FPS</option></select>
+        </div>
+        <button class="btn-jogar" style="width: 100%" onclick="document.getElementById('settings-modal').style.display='none'">SALVAR E FECHAR</button>
     </div>
 
 </body>
