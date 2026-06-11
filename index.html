@@ -3,48 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subway Surfers - Home</title>
+    <title>Subway Surfers Home</title>
     <style>
-        body { margin: 0; background-color: #0d0d0d; color: white; font-family: sans-serif; }
-        .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 15px; padding-bottom: 80px; }
-        .card { background: #1a1a1a; border-radius: 15px; overflow: hidden; text-align: center; padding-bottom: 12px; border: 1px solid #333; }
-        .card img { width: 100%; height: 110px; object-fit: cover; }
-        .card h3 { margin: 8px 0 4px; font-size: 15px; }
-        .btn-jogar { background: #333; color: white; border: none; padding: 8px 25px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        body { margin: 0; background-color: #050505; color: white; font-family: 'Segoe UI', sans-serif; }
+        .grid-container { display: grid; grid-template-columns: 1fr; gap: 20px; padding: 20px; padding-bottom: 120px; }
         
-        .navbar { position: fixed; bottom: 0; width: 100%; background: #111; display: flex; justify-content: space-around; padding: 15px 0; border-top: 1px solid #333; z-index: 100; }
-        .navbar span { cursor: pointer; font-size: 14px; font-weight: bold; }
-
-        #settings-modal { display: none; position: fixed; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); padding: 20px; box-sizing: border-box; z-index: 200; }
-        .config-item { margin-bottom: 20px; }
+        .card { background: #1a1a1a; border-radius: 20px; overflow: hidden; border: 1px solid #333; }
+        .card img { width: 100%; height: 180px; object-fit: cover; }
+        .card-content { padding: 15px; }
+        .card h3 { margin: 0 0 10px 0; font-size: 20px; }
+        
+        .btn-jogar { background: #ffffff; color: #000; border: none; padding: 12px; width: 100%; border-radius: 10px; font-weight: bold; cursor: pointer; }
+        
+        .navbar { position: fixed; bottom: 0; width: 100%; background: #000; display: flex; justify-content: space-around; padding: 20px 0; border-top: 1px solid #444; }
+        
+        #settings-modal { display: none; position: fixed; top: 0; width: 100%; height: 100%; background: #000; padding: 20px; box-sizing: border-box; z-index: 1000; }
+        .res-box { display: flex; gap: 10px; margin-top: 10px; }
+        .res-box input { width: 45%; padding: 10px; background: #222; border: 1px solid #444; color: white; border-radius: 8px; text-align: center; }
+        .btn-action { width: 100%; padding: 15px; margin-top: 20px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
 
     <div class="grid-container">
-        <!-- Mapa 1 -->
         <div class="card">
             <img src="thumb_monaco.jpg" alt="Monaco">
-            <h3>Monaco</h3>
-            <button class="btn-jogar" onclick="window.location.href='Games/Monaco/index.html'">JOGAR</button>
+            <div class="card-content">
+                <h3>Monaco</h3>
+                <button class="btn-jogar" onclick="window.location.href='Games/Monaco/index.html'">JOGAR</button>
+            </div>
         </div>
-        <!-- Mapa 2 -->
         <div class="card">
             <img src="thumb_zurich.jpg" alt="Zurich">
-            <h3>Zurich</h3>
-            <button class="btn-jogar" onclick="window.location.href='Games/Zurich/index.html'">JOGAR</button>
+            <div class="card-content">
+                <h3>Zurich</h3>
+                <button class="btn-jogar" onclick="window.location.href='Games/Zurich/index.html'">JOGAR</button>
+            </div>
         </div>
-        <!-- Mapa 3 -->
         <div class="card">
             <img src="thumb_houston.jpg" alt="Houston">
-            <h3>Houston</h3>
-            <button class="btn-jogar" onclick="window.location.href='Games/Houston/index.html'">JOGAR</button>
+            <div class="card-content">
+                <h3>Houston</h3>
+                <button class="btn-jogar" onclick="window.location.href='Games/Houston/index.html'">JOGAR</button>
+            </div>
         </div>
-        <!-- Mapa 4 -->
         <div class="card">
             <img src="thumb_sanfrancisco.jpg" alt="San Francisco">
-            <h3>San Francisco</h3>
-            <button class="btn-jogar" onclick="window.location.href='Games/SanFrancisco/index.html'">JOGAR</button>
+            <div class="card-content">
+                <h3>San Francisco</h3>
+                <button class="btn-jogar" onclick="window.location.href='Games/SanFrancisco/index.html'">JOGAR</button>
+            </div>
+        </div>
+        <div class="card">
+            <img src="thumb_berlin.jpg" alt="Berlin">
+            <div class="card-content">
+                <h3>Berlin</h3>
+                <button class="btn-jogar" onclick="window.location.href='Games/Berlin/index.html'">JOGAR</button>
+            </div>
         </div>
     </div>
 
@@ -55,19 +70,17 @@
 
     <div id="settings-modal">
         <h2>Configurações</h2>
-        <div class="config-item">
-            <label>Idioma:</label><br>
-            <select><option>Português (BR)</option><option>English</option></select>
+        <p>Idioma</p>
+        <select style="width:100%; padding: 10px; background: #222; color: white; border: none;"><option>Português</option><option>English</option></select>
+        <p>Resolução (Largura x Altura)</p>
+        <div class="res-box">
+            <input type="text" placeholder="Largura">
+            <input type="text" placeholder="Altura">
         </div>
-        <div class="config-item">
-            <label>Resolução:</label><br>
-            <input type="range" style="width: 100%">
-        </div>
-        <div class="config-item">
-            <label>FPS:</label><br>
-            <select><option>60 FPS</option><option>30 FPS</option></select>
-        </div>
-        <button class="btn-jogar" style="width: 100%" onclick="document.getElementById('settings-modal').style.display='none'">SALVAR E FECHAR</button>
+        <p>FPS</p>
+        <select style="width:100%; padding: 10px; background: #222; color: white; border: none;"><option>60 FPS</option><option>30 FPS</option></select>
+        <button class="btn-action" style="background: #fff;" onclick="document.getElementById('settings-modal').style.display='none'">SALVAR</button>
+        <button class="btn-action" style="background: #333; color: white;" onclick="document.getElementById('settings-modal').style.display='none'">FECHAR</button>
     </div>
 
 </body>
